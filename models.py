@@ -2,6 +2,7 @@ from sqlalchemy import Column, String, Integer, Float
 import uuid
 from database import Base
 
+# Définition de la classe Produit, qui hérite de la classe Base de SQLAlchemy
 class Produit(Base):
     __tablename__ = "produits"
     id = Column(String, primary_key=True, default=lambda: str(uuid.uuid4()), unique=True)
