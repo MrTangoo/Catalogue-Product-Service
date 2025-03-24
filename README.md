@@ -1,4 +1,4 @@
-# Catalogue Produit API
+# Catalogue Product API
 
 Cette API permet de gérer un catalogue de produits, incluant la création, la récupération, la mise à jour et la suppression des produits. Elle utilise FastAPI pour l'implémentation et SQLAlchemy pour la gestion de la base de données.
 
