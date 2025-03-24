@@ -1,9 +1,16 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, validator
+from decimal import Decimal
 
-# Définition de la classe ProduitBase qui est utilisée pour la validation des données d'entrée/sortie
+
 class ProduitBase(BaseModel):
     id: str | None = None
     nom: str
     description: str | None = None
-    prix: float
+    prix: Decimal
     quantite_en_stock: int
+
+    @validator('quantite_en_stock')
+    def check_quantite_en_stock(cls, value):
+        if value < 0:
+            raise ValueError('La quantité en stock ne peut pas être inférieure à 0')
+        return value

@@ -1,4 +1,4 @@
-from fastapi import APIRouter, HTTPException, Depends
+from fastapi import APIRouter, HTTPException, Depends, status
 from sqlalchemy.orm import Session
 from typing import List
 from database import get_db
@@ -9,7 +9,7 @@ from schemas import ProduitBase
 router = APIRouter(prefix="/produits", tags=["Produits"])
 
 # Route POST pour créer un nouveau produit
-@router.post("/", response_model=ProduitBase)
+@router.post("/", response_model=ProduitBase, status_code=status.HTTP_201_CREATED)
 def create_product(produit: ProduitBase, db: Session = Depends(get_db)):
     db_produit = Produit(**produit.dict(exclude={"id"}))
     db.add(db_produit)
